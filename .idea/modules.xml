@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/QuantityMeasurementApp.iml" filepath="$PROJECT_DIR$/QuantityMeasurementApp.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/QuantityMeasurementApp.iml" filepath="$PROJECT_DIR$/.idea/QuantityMeasurementApp.iml" />
+>>>>>>> 1fca9ab (UC1: Implement Feet measurement equality)
     </modules>
   </component>
 </project>
