@@ -2,39 +2,32 @@ package com.apps.quantitymeasurement;
 
 public class QuantityMeasurementApp {
 
-    // Method 1: raw values
-    public static void demonstrateLengthConversion(double value, LengthUnit from, LengthUnit to) {
-        double result = QuantityLength.convert(value, from, to);
-        System.out.println("convert(" + value + ", " + from + ", " + to + ") → " + result);
-    }
-
-    // Method 2: using object
-    public static void demonstrateLengthConversion(QuantityLength q, LengthUnit to) {
-        double result = q.convertTo(to);
-        System.out.println(q + " → " + result + " " + to);
-    }
-
-    // Equality demo
-    public static void demonstrateLengthEquality(QuantityLength q1, QuantityLength q2) {
-        System.out.println(q1 + " == " + q2 + " ? " + q1.equals(q2));
-    }
-
     public static void main(String[] args) {
 
-        // 🔹 Conversion examples
-        demonstrateLengthConversion(1.0, LengthUnit.FEET, LengthUnit.INCH);
-        demonstrateLengthConversion(3.0, LengthUnit.YARD, LengthUnit.FEET);
-        demonstrateLengthConversion(36.0, LengthUnit.INCH, LengthUnit.YARD);
-        demonstrateLengthConversion(1.0, LengthUnit.CENTIMETER, LengthUnit.INCH);
+        QuantityLength f1 = new QuantityLength(1.0, LengthUnit.FEET);
+        QuantityLength f2 = new QuantityLength(2.0, LengthUnit.FEET);
 
-        // 🔹 Object-based conversion
-        QuantityLength q = new QuantityLength(2.0, LengthUnit.YARD);
-        demonstrateLengthConversion(q, LengthUnit.FEET);
+        QuantityLength inch = new QuantityLength(12.0, LengthUnit.INCH);
+        QuantityLength yard = new QuantityLength(1.0, LengthUnit.YARD);
+        QuantityLength cm = new QuantityLength(2.54, LengthUnit.CENTIMETER);
 
-        // 🔹 Equality checks
-        QuantityLength q1 = new QuantityLength(1.0, LengthUnit.FEET);
-        QuantityLength q2 = new QuantityLength(12.0, LengthUnit.INCH);
+        // 🔹 Same unit addition
+        System.out.println("1 ft + 2 ft = " + f1.add(f2));
 
-        demonstrateLengthEquality(q1, q2);
+        // 🔹 Cross unit addition
+        System.out.println("1 ft + 12 in = " + f1.add(inch));
+
+        // 🔹 Reverse (unit changes)
+        System.out.println("12 in + 1 ft = " + inch.add(f1));
+
+        // 🔹 Yard example
+        System.out.println("1 yard + 3 ft = " + yard.add(new QuantityLength(3.0, LengthUnit.FEET)));
+
+        // 🔹 CM + Inch
+        System.out.println("2.54 cm + 1 inch = " + cm.add(new QuantityLength(1.0, LengthUnit.INCH)));
+
+        // 🔹 Static API
+        System.out.println("Static add → " +
+                QuantityLength.add(f1, inch, LengthUnit.FEET));
     }
 }
